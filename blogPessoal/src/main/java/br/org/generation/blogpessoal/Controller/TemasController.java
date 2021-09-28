@@ -1,6 +1,7 @@
 package br.org.generation.blogpessoal.Controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,9 @@ public class TemasController {
 	@Autowired
 	TemasRepository repository;
 	
-	@GetMapping("/")
+	@GetMapping
+
+	
 	public ResponseEntity<List<Temas>> getAllTemas(){
 		return ResponseEntity.ok(repository.findAll());
 	}
@@ -37,6 +40,12 @@ public class TemasController {
 		return repository.findById(id)
 			   .map(response -> ResponseEntity.ok(response))
 			   .orElse(ResponseEntity.notFound().build());
+	}
+	
+	@GetMapping("/searchdescricao/{descricao}")
+	public ResponseEntity<List<Temas>>  getTemasAllDescricao(@PathVariable("descricao") String descricao){
+		
+		return ResponseEntity.ok(repository.findAllByDescricaoContainingIgnoreCase(descricao));
 	}
 	
 	
