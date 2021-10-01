@@ -28,8 +28,6 @@ public class TemasController {
 	TemasRepository repository;
 	
 	@GetMapping
-
-	
 	public ResponseEntity<List<Temas>> getAllTemas(){
 		return ResponseEntity.ok(repository.findAll());
 	}
