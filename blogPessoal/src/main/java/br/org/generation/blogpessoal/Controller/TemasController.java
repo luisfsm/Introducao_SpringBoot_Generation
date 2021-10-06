@@ -32,7 +32,7 @@ public class TemasController {
 		return ResponseEntity.ok(repository.findAll());
 	}
 	
-	@GetMapping("/searchid/{id}")
+	@GetMapping("/{id}")
 	public ResponseEntity<Temas> getTemaById(@PathVariable long id){
 		
 		return repository.findById(id)
@@ -40,25 +40,25 @@ public class TemasController {
 			   .orElse(ResponseEntity.notFound().build());
 	}
 	
-	@GetMapping("/searchdescricao/{descricao}")
+	@GetMapping("/descricao/{descricao}")
 	public ResponseEntity<List<Temas>>  getTemasAllDescricao(@PathVariable("descricao") String descricao){
 		
 		return ResponseEntity.ok(repository.findAllByDescricaoContainingIgnoreCase(descricao));
 	}
 	
 	
-	@PostMapping("/insert")
+	@PostMapping
 	public ResponseEntity<Temas> insertTema(@RequestBody Temas tema){	
 		return ResponseEntity.status(HttpStatus.CREATED).body(repository.save(tema));
 	}
 	
-	@PutMapping("/update")
+	@PutMapping
 	public ResponseEntity<Temas> putTemas(@RequestBody Temas tema){
 		
 		return ResponseEntity.status(HttpStatus.OK).body(repository.save(tema));
 	}
 	
-	@DeleteMapping("/delete/{id}")
+	@DeleteMapping("/{id}")
 	public void deleteTema(@PathVariable("id") long id) {
 		repository.deleteById(id);
 	}
