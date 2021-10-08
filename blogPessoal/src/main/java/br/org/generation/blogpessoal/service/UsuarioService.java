@@ -20,12 +20,14 @@ public class UsuarioService {
 	UsuarioRepository usuarioRepository;
 	
 	
-	public Usuario cadastrarUsuario(Usuario usuario) {
+	public Optional<Object> cadastrarUsuario(Usuario usuario) {
+		if (usuarioRepository.findByUsuario(usuario.getUsuario()).isPresent())
+			return Optional.empty();
 		BCryptPasswordEncoder enconder = new BCryptPasswordEncoder();
 		String senhaEnconder = enconder.encode(usuario.getSenha());
 		usuario.setSenha(senhaEnconder);
 		
-		return usuarioRepository.save(usuario);
+		return Optional.of(usuarioRepository.save(usuario));
 	}
 	
 	
