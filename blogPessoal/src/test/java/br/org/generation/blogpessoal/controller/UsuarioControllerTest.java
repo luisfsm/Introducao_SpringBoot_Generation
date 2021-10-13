@@ -1,4 +1,4 @@
-package br.com.atividadesemanal.controller;
+package br.org.generation.blogpessoal.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

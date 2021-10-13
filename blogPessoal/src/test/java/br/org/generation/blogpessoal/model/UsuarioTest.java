@@ -1,4 +1,4 @@
-package br.com.atividadesemanal.model;
+package br.org.generation.blogpessoal.model;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -51,7 +51,7 @@ public class UsuarioTest {
 	@DisplayName("✖ Não Valida Atributos Nulos")
 	void  testNaoValidaAtributos() {
 
-		Set<ConstraintViolation<Usuario>> violacao = validator.validate(usuarioErro);
+		Set<ConstraintViolation<Usuario>> violacao = validator.validate(usuario);
 		System.out.println(violacao.toString());
 
 		assertTrue(violacao.isEmpty());

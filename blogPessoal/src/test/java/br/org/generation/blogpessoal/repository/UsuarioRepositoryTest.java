@@ -1,5 +1,4 @@
-package br.com.atividadesemanal.repository;
-
+package br.org.generation.blogpessoal.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;

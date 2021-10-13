@@ -1,4 +1,4 @@
-package br.org.generation.blogpessoal.seguranca;
+package br.org.generation.blogpessoal.security;
 
 import java.util.Optional;
 
@@ -13,19 +13,16 @@ import br.org.generation.blogpessoal.model.Usuario;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-	
-	
-	@Autowired
-	UsuarioRepository repository;
-	
-	
-	@Override
-	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException  {
-		Optional<Usuario> user = repository.findByUsuario(userName);
-		user.orElseThrow(() -> new UsernameNotFoundException(userName + " not found"));
-		
-		return user.map(UserDetailsImpl::new).get();
-	}
 
-	
+	@Autowired
+	private UsuarioRepository userRepository;
+
+	@Override
+	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+
+		Optional<Usuario> usuario = userRepository.findByUsuario(userName);
+		usuario.orElseThrow(() -> new UsernameNotFoundException(userName + " not found."));
+
+		return usuario.map(UserDetailsImpl::new).get();
+	}
 }
