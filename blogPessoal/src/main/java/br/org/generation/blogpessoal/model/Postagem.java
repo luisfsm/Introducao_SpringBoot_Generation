@@ -30,7 +30,7 @@ public class Postagem {
 	private String titulo;
 
 	@NotNull(message = "O Atributo texto e obrigatrio")
-	@Size(min = 5, max = 100)
+	@Size(min = 5, max = 10000)
 	private String texto;
 	
 	@Temporal(TemporalType.TIMESTAMP)
