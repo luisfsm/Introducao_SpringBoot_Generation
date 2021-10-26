@@ -1,10 +1,16 @@
-import React from 'react';
 import './App.css';
-import Home from './pages/home/home';
+import Home from './pages/Home/Home'
+import Footer from './Components/static/footer/Footer';
+import Navbar from './Components/static/navbar/Navbar';
+
 
 function App() {
   return (
+    <>
+    <Navbar />
     <Home />
+    <Footer />
+    </>
   );
 }
 

@@ -43,6 +43,7 @@ public class UsuarioService {
 	public Optional<UserLogin> autenticarUsuario(Optional<UserLogin> usuarioLogin) {
 
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		
 		Optional<Usuario> usuario = usuarioRepository.findByUsuario(usuarioLogin.get().getUsuario());
 
 		if (usuario.isPresent()) {
