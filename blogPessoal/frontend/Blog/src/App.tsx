@@ -4,6 +4,7 @@ import Home from './pages/Home/Home'
 import Footer from './Components/static/footer/Footer';
 import Navbar from './Components/static/navbar/Navbar';
 import Login from './pages/Login/Login';
+import CadastroUsuario from './pages/cadastro/CadastroUsuario';
 
 
 function App() {
@@ -19,6 +20,10 @@ function App() {
               <Login />
           </Route>
 
+          <Route path="/singup" >
+            <CadastroUsuario />
+          </Route>
+          
           <Route path="/home" >
             <Home />
           </Route>
