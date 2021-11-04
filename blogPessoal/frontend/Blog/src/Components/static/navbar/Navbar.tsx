@@ -25,11 +25,13 @@ function Navbar() {
                                 Postagens
                             </Typography>
                         </Box>
-                        <Box mx={1} className="cursor">
-                            <Typography variant="h6" color="inherit">
-                                Temas
-                            </Typography>
-                        </Box>
+                        <Link to="/temas" className="text-decorator-none">
+                            <Box mx={1} className="cursor">
+                                <Typography variant="h6" color="inherit">
+                                    Temas
+                                </Typography>
+                            </Box>
+                        </Link>
                         <Box mx={1} className="cursor">
                             <Typography variant="h6" color="inherit">
                                 Cadastrar Postagem
