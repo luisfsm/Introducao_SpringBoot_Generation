@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
-import Home from './pages/Home/Home'
 import Footer from './Components/static/footer/Footer';
 import Navbar from './Components/static/navbar/Navbar';
 import Login from './pages/Login/Login';
 import CadastroUsuario from './pages/cadastro/CadastroUsuario';
 import ListaTema from './Components/temas/listatema/ListaTema';
 import ListaPostagem from './Components/postagens/listapostagem/ListaPostagem';
+import Home from './pages/home/home';
 
 
 function App() {
