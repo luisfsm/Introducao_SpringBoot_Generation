@@ -1,12 +1,85 @@
 import React, { useEffect, useState } from 'react'
-import {Typography, Button, Box, Card, CardActions, CardContent } from "@material-ui/core"
+import { Typography, Button, Box, Card, CardActions, CardContent } from "@material-ui/core"
 import './DeletarPostagem.css';
 import Postagem from '../../../models/Postagem';
 import { buscaId, deleteId } from '../../../services/Service';
+import { useHistory, useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { TokenState } from '../../../store/tokens/tokensReducer';
+import { toast } from 'react-toastify';
+
 
 function DeletarPostagem() {
-   
+  let history = useHistory();
+  const { id } = useParams<{ id: string }>();
+  const token = useSelector<TokenState, TokenState["tokens"]>(
+    (state) => state.tokens
+  );
+  const [post, setPosts] = useState<Postagem>()
+
+
+  useEffect(() => {
+    if (token == "") {
+      toast.error("Você precisa estar logado", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        theme: "colored",
+        progress: undefined,
+    })
+      history.push("/login")
+
+    }
+  }, [token])
+
+  async function findById(id: string) {
+    buscaId(`/postagens/${id}`, setPosts, {
+      headers: {
+        'Authorization': token
+      }
+    })
+  }
+
+  function sim() {
+
+    history.push('/posts')
+    deleteId(`/postagens/delete/${id}`, {
+      headers: {
+        'Authorization': token
+      }
+    });
+
+    toast.success("Postagem deletada com sucesso", {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      theme: "colored",
+      progress: undefined,
+    })
+  }
+
+  function nao() {
+    history.push('/posts')
+  }
+
+
+
+  useEffect(() => {
+    console.log(id)
+    if (id !== undefined) {
+      findById(id)
+    }
+  }, [id])
+
+
   return (
+
     <>
       <Box m={2}>
         <Card variant="outlined" >
@@ -16,7 +89,7 @@ function DeletarPostagem() {
                 Deseja deletar a Postagem:
               </Typography>
               <Typography color="textSecondary" >
-              Tema
+                {post?.titulo}
               </Typography>
             </Box>
 
@@ -24,14 +97,14 @@ function DeletarPostagem() {
           <CardActions>
             <Box display="flex" justifyContent="start" ml={1.0} mb={2} >
               <Box mx={2}>
-              <Button  variant="contained" className="marginLeft" size='large' color="primary">
-                Sim
-              </Button>
+                <Button onClick={sim} variant="contained" className="marginLeft" size='large' color="primary">
+                  Sim
+                </Button>
               </Box>
               <Box>
-              <Button   variant="contained" size='large' color="secondary">
-                Não
-              </Button>
+                <Button onClick={nao} variant="contained" size='large' color="secondary">
+                  Não
+                </Button>
               </Box>
             </Box>
           </CardActions>
